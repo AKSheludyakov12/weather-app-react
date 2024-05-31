@@ -1,0 +1,50 @@
+.AirQuality {
+    grid-column-start: 10;
+    grid-row-start: 3;
+}
+.state-text{
+    display: flex;
+    justify-content: center;
+    font: var(--font-l);
+    padding-top: 32px;
+}
+.value{
+    padding-top:10px ;
+    display: flex;
+    justify-content: center;
+    color: var(--accent-color);
+    font: var(--font-l);
+    font-size: 40px;
+}
+.normal{ 
+   
+    color: #E9EB87;
+}
+.bad{
+    color: #EB8787;
+}
+.good{
+   
+    color: #87EBCD
+}
+
+
+
+.airQualityProps{
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+.airQualityPropsItem{
+    text-align: center;
+    font: var(--font-m);
+    line-height: 14px;
+    padding-top: 32px;
+    .airQuality-value{
+
+        color: #87EBCD;
+    }
+    .airQuality-item{
+        color: var(--accent-color);
+    }
+}

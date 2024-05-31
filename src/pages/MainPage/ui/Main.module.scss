@@ -1,0 +1,21 @@
+.MainPage{
+
+  display: grid;
+    grid-template-columns: repeat(14, 79px );
+grid-template-rows: repeat(11, 52px);
+    grid-column-gap: 20px;
+   grid-row-gap: 20px;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+
+
+.background_image{
+ 
+ position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+ background-color:  rgba(12, 116, 202, 0.704);
+}

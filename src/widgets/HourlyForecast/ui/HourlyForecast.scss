@@ -1,0 +1,35 @@
+.hourly-forecast{
+
+  
+ 
+.hourly-forecast__temp{
+  color: var(--primary-color);
+  font:var(--font-l);
+  line-height: 20px;
+}
+
+&__icon{
+  
+    display: grid;
+    place-items: center;
+}
+  ul{
+    padding-top: 25px;
+    display: flex; 
+    justify-content: center;  
+    gap:14px;
+    
+   img{
+
+    margin: 0 auto
+   
+   }
+  }
+  li{ 
+    line-height: 20px;
+    width: 70px;
+    text-align: center;
+  }
+
+}
+
