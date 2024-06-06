@@ -1,14 +1,14 @@
 import cls from "./Forecast.module.scss"
 import HourlyForecast from "../../HourlyForecast"
 import { useContext } from "react"
-import { WeatherContext } from "../../../App/Provider/WeatherDataProvider"
 import { weatherConditionDay } from "../../../shared/lib/iconSrc/iconSrc"
 import Ul from "../../../shared/ui/Ul"
+import { useSelector } from "react-redux"
+import { StateSchema } from "../../../App/Redux/Config/StateSchema"
 
 
 const ForecastByDay = () => {
-    const {weatherData} = useContext(WeatherContext)
-   
+   const {weatherData} = useSelector((state: StateSchema)=>state.weatherData)
    
     return ( 
         <div>

@@ -1,31 +1,49 @@
 
 
-import { FC } from "react";
-import { Data } from "../../../App/Provider/WeatherDataProvider/lib/WeatherContext";
-
+import { FC, useState } from "react";
 import cls from "./CurrentForecast.module.scss"
+import { ThemeTimeOfDay } from "../../../shared/lib/Theme/Theme";
+import { HeaderCurrent } from "./HeaderCurrent/HeaderCurrent";
+import { FormatedDate } from "../../../shared/lib";
+import { WeatherDataProps } from "../../../App/Redux/Config/StateSchema";
+
+
 interface CurrentForecastProps {
-weatherData: Data,
+weatherData: WeatherDataProps,
 city:string, 
-background: string
+activeTheme:ThemeTimeOfDay
 }
 
-const CurrentForecast:FC<CurrentForecastProps> = ({weatherData, city, background}) => {
+const CurrentForecast:FC<CurrentForecastProps> = ({weatherData, city, activeTheme}) => {
 
  
     const { current } = weatherData
     const {day} =  weatherData.forecast.forecastday[0]
-    
+    const [selectedDay, setSelectedDayDay] = useState(0)
+  
+  
+    const onClickNextDay = () => {
+      setSelectedDayDay(selectedDay + 1)
+    }
+    const onClickPrevDay = () => {
+      setSelectedDayDay(selectedDay - 1)
+    }
 
 
-    if(weatherData && day)
 
-      return (
-      <div className={cls.container}>
-<div className={background === "day" ? cls.day : cls.night}>
+      return (<>
+        <div className={cls.container}>
+        <HeaderCurrent 
+        day={selectedDay} 
+        selctedDay={FormatedDate(weatherData.forecast.forecastday[selectedDay].date)}
+        onClickNextDay={onClickNextDay} onClickPrevDay={onClickPrevDay}/>
+<div className={cls[activeTheme]}>
           <div className={cls.city}>{city}</div>
           <div className={cls.block}>
-            <div className={cls.now}>{Math.round(current.temp_c)}°C</div>
+            <div className={cls.now}>
+              {
+              selectedDay > 0 ? Math.round(day.avgtemp_c) : Math.round(current.temp_c)} °С 
+              </div>
             <div className={cls.max_min}>
               <div className={cls.max}>{Math.round(day.maxtemp_c)}°</div>
               <div className={cls.min}>{Math.round(day.mintemp_c)}°</div>
@@ -138,10 +156,10 @@ const CurrentForecast:FC<CurrentForecastProps> = ({weatherData, city, background
         </div>
 
       </div>
+      </>
         
          
         
       );
-      return null
     };
     export default CurrentForecast;

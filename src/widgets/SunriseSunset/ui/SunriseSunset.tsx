@@ -1,17 +1,16 @@
 import React from 'react'
 
 import  "./SunriseSunset.scss"
-import { WeatherProvider } from '../../../App/Provider/WeatherDataProvider'
    
 
  const SunriseSunset = ({weatherData}) => {
   
     const {localtime} = weatherData.location
-  const formattedTime = (time: string) => {
+
+    const formattedTime = (time: string) => {
     return new Date(time);
   }
 
-  console.log(WeatherProvider)
   
 
   const currentTime = formattedTime(localtime);
@@ -21,8 +20,6 @@ if(weatherData)
   return (
     <div className='Timeset'>
         <div className="card">
-     
-
  {
 Array.from({ length: 13 }, (_, i) => (
 i === currentTime.getHours() % 12 ? <span className='number active'> </span> : <span className='number '></span>

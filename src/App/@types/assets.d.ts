@@ -18,3 +18,7 @@ declare module '*.module.scss' {
   const content: any;
   export default content
 }
+
+type DeepPartial<T> = T extends object ? {
+  [P in keyof T]?: DeepPartial<T[P]>;
+} : T;

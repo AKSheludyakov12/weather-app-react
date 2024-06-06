@@ -3,16 +3,15 @@ import ReactDOM from 'react-dom/client';
 
 
 import App from './App/App';
-import WeatherProvider from './App/Provider/WeatherDataProvider/ui/WeatherProvider';
+import { StoreProvider } from './App/Provider/StoreProvider/StoreProvider';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-    <WeatherProvider>
+<StoreProvider>
       <App />
-    </WeatherProvider>
- 
+</StoreProvider> 
  
 
 

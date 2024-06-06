@@ -1,16 +1,21 @@
-import { FC } from "react"
-import { Data, WeatherContextProps, airQuality } from "../../../App/Provider/WeatherDataProvider/lib/WeatherContext"
 import ComponentWrapper from "../../../shared/ui/ComponentWrapper"
 import Title from "../../../shared/ui/Title"
 import "./AirQuality.scss"
 import Ptext from "../../../shared/ui/Ptext"
 import ClassNames from "../../../shared/lib/ClassNames"
-const AirQuality = ({weatherData} ) => {
-    const {air_quality:airProps} = weatherData.current
+import { WeatherDataProps, airQuality } from "../../../App/Redux/Config/StateSchema"
 
-    const calculatedAirQuality = ( airProps:{string:number}) => {
-      return  Object.values(airProps).reduce((acc, airProps)=> ((acc + airProps)), 0)/Object.values(airProps).length
+
+interface AirQualityProps{
+    weatherData: WeatherDataProps
+}
+export const AirQuality = ({weatherData}:AirQualityProps ) => {
+    const {air_quality:airQualityData} = weatherData.current
+
+    const calculatedAirQuality = ( airProps:airQuality) => {
+      return  Object.values(airProps).reduce((acc:number, airProps)=> ((acc + airProps)), 0)/Object.values(airProps).length
     }
+
     const visibleAirState = (calculatedAirQuality) => {
         if(calculatedAirQuality <= 50){
             return "Хорошее"
@@ -19,27 +24,26 @@ const AirQuality = ({weatherData} ) => {
         } 
         return "Плохое"
     }
-    const airState = visibleAirState(calculatedAirQuality(airProps));
+    const airState = visibleAirState(calculatedAirQuality(airQualityData));
     const airQualityClass = {
         "Хорошее":"good",
         "Среднее": "normal",
         "Плохое": "bad"
     }
 
-    console.log(Object.entries(airProps))
     return (
         <div className="AirQuality">
         <ComponentWrapper>
        <Title>
-        Состояние воздуха 
+        Состояние воздуха на сегодня
        </Title >
        <div className={ClassNames("state-text", {}, [airQualityClass[airState]])}> 
             {airState}
         </div>
-        <p className={ClassNames("value", {}, [airQualityClass[airState]])}>{Math.round(calculatedAirQuality(airProps))}</p>
+        <p className={ClassNames("value", {}, [airQualityClass[airState]])}>{Math.round(calculatedAirQuality(airQualityData))}</p>
        <ul className="airQualityProps">
         {
-        Object.entries(airProps)
+        Object.entries(airQualityData)
         .filter(([item, value]) => item !=='us-epa-index' && item !=='gb-defra-index')
         .map((airProps:[string, number])=>{
             const [item, value] = airProps
@@ -61,5 +65,3 @@ const AirQuality = ({weatherData} ) => {
 
 }
 
-
-export default AirQuality

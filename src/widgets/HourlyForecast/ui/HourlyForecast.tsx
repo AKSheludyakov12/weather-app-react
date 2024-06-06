@@ -4,25 +4,25 @@ import "./HourlyForecast.scss"
 
 import { weatherConditionDay } from '../../../shared/lib/iconSrc/iconSrc'
 import Title from "../../../shared/ui/Title";
-import { WeatherContext } from "../../../App/Provider/WeatherDataProvider";
 import { FC, useContext } from "react";
 import Ptext from "../../../shared/ui/Ptext";
-import { Data } from "../../../App/Provider/WeatherDataProvider/lib/WeatherContext";
+import { WeatherDataProps } from "../../../App/Redux/Config/StateSchema";
 
 
 
 const formattedTime = (time: string ) => {
   return new Date(time);
 }
+interface HourlyForecastProps {
+  weatherData: WeatherDataProps,
+  }
 
-const HourlyForecast = () => {
-const {weatherData} = useContext(WeatherContext)
+const HourlyForecast:FC<HourlyForecastProps> = ({weatherData}) => {
 
-  const {localtime} = weatherData.location
-  const {hour} = weatherData.forecast.forecastday[0]
-
+const localtime = weatherData.location.localtime
+const {hour} = weatherData.forecast.forecastday[0]
   const visibleHourForecast = []
-  const  hourleForecastTommorow = weatherData.forecast?.forecastday[1]
+  const  hourleForecastTommorow = weatherData.forecast?.forecastday[+1]
   const currentTime = formattedTime(localtime);
  const filteredHourForecast = hour.filter((hour) => {
     if(hour && hour.time){
@@ -52,7 +52,6 @@ const {weatherData} = useContext(WeatherContext)
     <div className='hourly-forecast'>
       <Title> Прогноз по часам</Title>
         <ul >
-
           {visibleHourForecast.map((mappedHour:{time:string, temp_c:number, condition:{text:string}})=>{
         const time = formattedTime(mappedHour.time)
            return <li> 

@@ -1,10 +1,17 @@
-import { createContext } from "react";
+export interface StateSchema { 
+    cityData:CityScheme
+weatherData:WeatherDataSchema
+}
+
+export interface CityScheme {
+    city?:string
+}
 
 type Condition = {
     text: string
 }
 
-export type airQuality ={
+export type airQuality = {
 
     "co" : number,
     "gb-defra-index" : number,
@@ -32,11 +39,16 @@ type Hour = {
     "temp_c": number,
     "condition": Condition, 
 }
-
 type forecastday = { 
+    "date":string
     "day": {
         "maxtemp_c":number,
         "mintemp_c": number,
+        "avgtemp_c" : number,
+        "avghumidity": number,
+        "maxwind_kph":number,
+        "daily_chance_of_rain": number,
+        "daily_chance_of_snow": number,
         "condition": {
             "text":string
         }
@@ -50,24 +62,25 @@ type forecastday = {
     ]
 }
 
-export interface Data {
-    location: {
-        name: string
-        localtime: string
-    }
-    "current": current,
-    "forecast": {
-        "forecastday": forecastday[]
-    }
-  }
 
-export interface WeatherContextProps {
-    weatherData?: Data
-    setWeatherData: (data: Data) => void
-  }
+export interface WeatherDataSchema{
+    weatherData:WeatherDataProps
+} 
 
-  export const WeatherContext = createContext<WeatherContextProps>({
-    setWeatherData (weatherData) {
-    }
-  })
-  
+export interface WeatherDataProps {
+
+        location: {
+            name: string
+            localtime: string
+        }
+        "current": current,
+        "forecast": {
+            "forecastday": forecastday[]
+        }
+}
+
+export interface ThunkConfig<Type> {
+    rejectValue:Type
+    state: StateSchema
+
+}
