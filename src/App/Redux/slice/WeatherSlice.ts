@@ -1,17 +1,17 @@
-import { PayloadAction, createAsyncThunk, createSlice, isAction } from "@reduxjs/toolkit";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { WeatherDataDefault } from "../../../shared/const/WeatherDataDefault";
-import { StateSchema, WeatherDataProps } from "../Config/StateSchema";
-import { fetchCity } from "./CitySlice";
-import { promises } from "dns";
+import { WeatherDataProps, WeatherDataSchema } from "../Config/StateSchema";
 
 export type WeatherDataSliceState = {
-    weatherData: WeatherDataProps;
-    city: string;
+    weatherData: WeatherDataProps,
+    isLoading: boolean
+
 };
-const initialState: WeatherDataSliceState = {
+const initialState: WeatherDataSchema = {
     weatherData: WeatherDataDefault,
-    city: 'Владивосток'
+    isLoading: false
+
 };
 export const fetchWeatherData = createAsyncThunk       
 (
@@ -19,10 +19,8 @@ export const fetchWeatherData = createAsyncThunk
     
     async (city) =>{
         try {
-          
                 const responce = await axios.get(
                 `https://api.weatherapi.com/v1/forecast.json?key=f640eab122354f39be692227232108&days=5&lang=ru&q=${city}&aqi=yes` )
-                console.log(responce.data)
                 return responce.data
          }catch(error) {
             console.log(error)
@@ -39,29 +37,27 @@ reducers:{
     setWeatherData: (state, action: PayloadAction<WeatherDataProps>) => {
        state.weatherData =  action.payload
     },
-    seCity: (state, action) =>{
-        state.city = action.payload
-    }
+   
 },
 extraReducers: (builder) =>{
 builder 
-.addCase(fetchCity.fulfilled, (state, action:PayloadAction<string>) =>{
-    state.city = action.payload
 
-})
 .addCase(fetchWeatherData.pending, (state)=>{
-
+    state.isLoading = true
     console.log("думает")
 })
 .addCase(fetchWeatherData.fulfilled, (state, action)=> {
     state.weatherData = action.payload
+    state.isLoading = false
     console.log("ок")
     console.log(state.weatherData)
     localStorage.setItem("weatherData", JSON.stringify(state.weatherData))
 
 })
 .addCase(fetchWeatherData.rejected, (state, action) => {
+    state.isLoading = false
     console.log("все хуйня" + action.error.message)
+    state.weatherData = state.weatherData
 })
 
 }

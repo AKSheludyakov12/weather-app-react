@@ -1,4 +1,4 @@
-export { getCity} from "./selectors/getCity"
 export { createReduxStore } from "./Config/Store"
-export {citySlice } from "./slice/CitySlice"
+export {getSelectedDay } from "./selectors/getSelectedDay"
+export {getIsLoading} from "./selectors/getIsLoading"
 export type {WeatherDataSchema} from "./Config/StateSchema"

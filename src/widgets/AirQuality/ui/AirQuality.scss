@@ -1,6 +1,10 @@
 .AirQuality {
     grid-column-start: 10;
     grid-row-start: 3;
+    transition: 300ms;
+}
+.AirQuality:hover {
+    scale: 1.070;
 }
 .state-text{
     display: flex;

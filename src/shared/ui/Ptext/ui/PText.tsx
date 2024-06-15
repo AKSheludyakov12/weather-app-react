@@ -4,17 +4,17 @@ import ClassNames from "../../../lib/ClassNames"
 
 interface props {
     children?:React.ReactNode 
-    Classnames?: string
+    classNames?: string
 }
 
 const Ptext:FC<props> = (props) => {
 const {
     children,
-    Classnames
+    classNames
 } = props
 
     return (
-    <p className={ClassNames(cls.p, {}, [Classnames])}>
+    <p className={ClassNames(cls.p, {}, [classNames])}>
         {children}
     </p>
     )

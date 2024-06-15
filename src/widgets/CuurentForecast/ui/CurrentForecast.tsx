@@ -6,6 +6,11 @@ import { ThemeTimeOfDay } from "../../../shared/lib/Theme/Theme";
 import { HeaderCurrent } from "./HeaderCurrent/HeaderCurrent";
 import { FormatedDate } from "../../../shared/lib";
 import { WeatherDataProps } from "../../../App/Redux/Config/StateSchema";
+import { useSelector } from "react-redux";
+import { getIsLoading, getSelectedDay } from "../../../App/Redux";
+import { MainWrapper } from "./MainWrapper/MainWrapper";
+import Ul from "../../../shared/ui/Ul";
+import { Loader } from "../../../shared/ui/Loader";
 
 
 interface CurrentForecastProps {
@@ -16,29 +21,33 @@ activeTheme:ThemeTimeOfDay
 
 const CurrentForecast:FC<CurrentForecastProps> = ({weatherData, city, activeTheme}) => {
 
- 
+    const isLoading = useSelector(getIsLoading)
     const { current } = weatherData
-    const {day} =  weatherData.forecast.forecastday[0]
-    const [selectedDay, setSelectedDayDay] = useState(0)
+    const selectedDay = useSelector(getSelectedDay)
+    const {day} =  weatherData.forecast.forecastday[selectedDay]
   
+    const wind = selectedDay > 0 ? day.maxwind_kph : current.wind_kph
+    const humidity = selectedDay > 0 ? day.avghumidity :current.humidity 
+    const chanceOfRain = day.daily_chance_of_rain
   
-    const onClickNextDay = () => {
-      setSelectedDayDay(selectedDay + 1)
+
+    if(isLoading){
+      return (
+        <MainWrapper>
+        <Loader classNames={cls.loader_pozition}/>
+      </MainWrapper>
+      )
     }
-    const onClickPrevDay = () => {
-      setSelectedDayDay(selectedDay - 1)
-    }
 
+      return (
+<MainWrapper theme={activeTheme}>
+<HeaderCurrent 
+        className={cls.header}
+        selectedDay={selectedDay} 
+        selectedDayText={FormatedDate(weatherData.forecast.forecastday[selectedDay].date)}
 
-
-      return (<>
-        <div className={cls.container}>
-        <HeaderCurrent 
-        day={selectedDay} 
-        selctedDay={FormatedDate(weatherData.forecast.forecastday[selectedDay].date)}
-        onClickNextDay={onClickNextDay} onClickPrevDay={onClickPrevDay}/>
-<div className={cls[activeTheme]}>
-          <div className={cls.city}>{city}</div>
+        />
+       
           <div className={cls.block}>
             <div className={cls.now}>
               {
@@ -50,7 +59,7 @@ const CurrentForecast:FC<CurrentForecastProps> = ({weatherData, city, activeThem
             </div>
           </div>
           <div className={cls.weather_property}>
-            <ul className={cls.list}>
+            <Ul className={cls.list}>
               <li>
                 <div className={cls.icon}>
                   <svg
@@ -70,7 +79,7 @@ const CurrentForecast:FC<CurrentForecastProps> = ({weatherData, city, activeThem
                 </div>
                 <div className={cls.text}>
                 <div className={cls.desc}>Ветер</div>
-                <div className={cls.value}>{current.wind_kph} Км/ч</div>
+                <div className={cls.value}>{wind} Км/ч</div>
                 </div>
               </li>
               <li>
@@ -113,7 +122,7 @@ const CurrentForecast:FC<CurrentForecastProps> = ({weatherData, city, activeThem
                 </div>
                 <div className={cls.text}>
                 <div className={cls.desc}>Влажность</div>
-                <div className={cls.value}>{current.humidity} %</div>
+                <div className={cls.value}>{humidity} %</div>
                 </div>
               </li>
               <li>
@@ -147,19 +156,13 @@ const CurrentForecast:FC<CurrentForecastProps> = ({weatherData, city, activeThem
                 </div>
                 <div className={cls.text}>
     
-                <div className={cls.desc}>Осадки</div>
-                <div className={cls.value}>{0} %</div>
+                <div className={cls.desc}>осадки</div>
+                <div className={cls.value}>{chanceOfRain} %</div>
                 </div>
               </li>
-            </ul>
+            </Ul>
           </div>
-        </div>
-
-      </div>
-      </>
-        
-         
-        
+      </MainWrapper>
       );
     };
     export default CurrentForecast;

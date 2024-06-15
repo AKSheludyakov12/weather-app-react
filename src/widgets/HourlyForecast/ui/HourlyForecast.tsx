@@ -1,12 +1,10 @@
 
-
-import "./HourlyForecast.scss"
-
 import { weatherConditionDay } from '../../../shared/lib/iconSrc/iconSrc'
 import Title from "../../../shared/ui/Title";
-import { FC, useContext } from "react";
+import { FC } from "react";
 import Ptext from "../../../shared/ui/Ptext";
 import { WeatherDataProps } from "../../../App/Redux/Config/StateSchema";
+import cls from "./HourlyForecast.module.scss"
 
 
 
@@ -17,7 +15,7 @@ interface HourlyForecastProps {
   weatherData: WeatherDataProps,
   }
 
-const HourlyForecast:FC<HourlyForecastProps> = ({weatherData}) => {
+export const HourlyForecast = ({weatherData}: HourlyForecastProps) => {
 
 const localtime = weatherData.location.localtime
 const {hour} = weatherData.forecast.forecastday[0]
@@ -49,20 +47,20 @@ const {hour} = weatherData.forecast.forecastday[0]
 
 
   return (
-    <div className='hourly-forecast'>
+    <div className={cls.hourly_forecast}>
       <Title> Прогноз по часам</Title>
         <ul >
           {visibleHourForecast.map((mappedHour:{time:string, temp_c:number, condition:{text:string}})=>{
         const time = formattedTime(mappedHour.time)
            return <li> 
-           <div className='hourly-time'>
+           <div className={cls.hourly_time}>
 
             {time.getHours() < 10 ? `0${time.getHours()}:00` : `${time.getHours()}:00`}
            </div>
             <img src={`/icon/${weatherConditionDay[mappedHour.condition.text]}`}/>
     
             <Ptext> {mappedHour.condition.text}</Ptext>
-            <div className='hourly-forecast__temp'>
+            <div className={cls.temp}>
                 { Math.round(mappedHour.temp_c)} °C
            </div>
            </li>
@@ -72,5 +70,3 @@ const {hour} = weatherData.forecast.forecastday[0]
     </div>
   )
 }
-
-export default HourlyForecast;

@@ -1,6 +1,11 @@
 .Timeset{
+
   grid-column-start: 7;
   grid-row-start:3 ;
+  transition: 300ms;
+}
+.Timeset:hover{
+scale: 1.070;  
 }
 .card {
   opacity: 80%;

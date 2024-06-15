@@ -1,0 +1,61 @@
+
+.input{   
+   
+}
+:focus{outline: none;}
+
+.input{
+    display: flex;
+    float: left; 
+     position: relative;
+    color: var(--accent-color);
+    background-color: transparent;
+    grid-row-start: 2;
+    grid-column-start: 2;
+    grid-column-end: 13;
+    font-size: 14px;
+    height: 35px;
+    padding: 0; 
+}
+    input[type="text"]{
+    color: var(--accent-color);
+     width: 100%; 
+     box-sizing: border-box; 
+   
+     background: transparent;}
+     .input input[type="text"]::placeholder {
+        color: var(--accent-color);
+    }
+
+.effect_1 {border: 0; padding: 7px 0; border-bottom: 1px solid #ccc;}
+
+.effect_1 ~ .focus_border{
+    position: absolute; 
+    bottom: 0; left: 0; 
+    width: 0; height: 2px; background-color: var(--bg-color); transition: 0.4s;}
+.effect_1:focus ~ .focus_border{width: 100%; transition: 0.4s;}
+
+.clear_icon{
+    width: 36px;
+}
+.clear_icon:hover{
+    opacity: 0.8;
+}
+.clear_button{
+    position: absolute;
+    top: -35%;
+    left: 92%;
+}
+.submit_icon{
+    width:  30px;
+    fill: var(--accent-color);
+}
+.submit_icon:hover{
+    opacity: 0.8;
+}
+
+.submit_button{
+    position: absolute;
+    top: -35%;
+    left: 96%;
+}

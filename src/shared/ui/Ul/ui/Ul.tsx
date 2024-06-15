@@ -1,8 +1,16 @@
+import { ReactNode } from 'react'
+import ClassNames from '../../../lib/ClassNames'
 import cls from './Ul.module.scss'
 
-const Ul = ({children} ) => {
+interface UlProps { 
+    className?: string
+    children:ReactNode
+}
+
+
+const Ul = ({className,children}:UlProps) => {
     return ( 
-        <ul className={cls.ul}>
+        <ul className={ClassNames(cls.ul, {}, [className])}>
             {children}
         </ul>
     )

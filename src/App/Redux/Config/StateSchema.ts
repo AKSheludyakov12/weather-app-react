@@ -1,6 +1,11 @@
 export interface StateSchema { 
-    cityData:CityScheme
 weatherData:WeatherDataSchema
+getSelectedDay: selectDay,
+}
+
+export interface selectDay { 
+    day:number
+
 }
 
 export interface CityScheme {
@@ -65,6 +70,8 @@ type forecastday = {
 
 export interface WeatherDataSchema{
     weatherData:WeatherDataProps
+    isLoading: boolean
+    error?: string
 } 
 
 export interface WeatherDataProps {

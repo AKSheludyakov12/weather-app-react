@@ -1,2 +1,1 @@
-import HourlyForecast from "./ui/HourlyForecast";
-export default HourlyForecast
+export { HourlyForecast } from "./ui/HourlyForecast";

@@ -3,8 +3,9 @@ import cls from "./Button.module.scss"
 import ClassNames from "../../../lib/ClassNames"
 
 export enum ButtonTheme  {
-    DEFAUT = "default",
-    NON_VISIBLE = "non_visible"
+    DEFAULT = "default",
+    NON_VISIBLE = "non_visible",
+    CLEAR = "clear"
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> { 
@@ -17,7 +18,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button = (props:ButtonProps )=> { 
     const { 
         className,
-        theme = ButtonTheme.DEFAUT ,
+        theme = ButtonTheme.DEFAULT ,
         children,
         disabled=false,
         ...otherProps

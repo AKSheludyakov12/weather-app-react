@@ -1,13 +1,13 @@
 import { Reducer, ReducersMapObject, configureStore } from "@reduxjs/toolkit";
-import { cityReducer, citySlaceState, citySlice } from "../slice/CitySlice";
 import { StateSchema } from "./StateSchema";
 import { WeatherDataReducer } from "../slice/WeatherSlice";
+import { daysSwitcherReducer } from "../slice/DaysSwitcher";
 
 
 export function createReduxStore(initialState: StateSchema){
 const rootReducer: ReducersMapObject<StateSchema>  = {  
     weatherData:WeatherDataReducer,
-    cityData: cityReducer
+    getSelectedDay: daysSwitcherReducer
 }
 
 return configureStore<StateSchema>({

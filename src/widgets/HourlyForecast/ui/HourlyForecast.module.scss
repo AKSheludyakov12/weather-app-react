@@ -1,24 +1,22 @@
-.hourly-forecast{
-
-  
+.hourly_forecast{
   grid-column-start: 7;
   grid-row-start:7 ;
-
-
-    align-items: center;
-opacity: 80%;
-    backdrop-filter: blur(20px);
-background-color: var(--bg-color);
-border-radius: 10px;
-width: 580px;
-height: 195px;
-color:var(--accent-color);
- 
-.hourly-forecast__temp{
+  align-items: center;
+  opacity: 80%;
+  backdrop-filter: blur(20px);
+  background-color: var(--bg-color);
+  border-radius: 10px;
+  width: 580px;
+  height: 195px;
+  color:var(--accent-color);
+  transition: 300ms;
+.temp{
   color: var(--primary-color);
   font:var(--font-l);
   line-height: 20px;
+
 }
+
 
 &__icon{
   
@@ -43,5 +41,9 @@ color:var(--accent-color);
     text-align: center;
   }
 
+}
+
+.hourly_forecast:hover{
+  scale: 1.070;
 }
 
