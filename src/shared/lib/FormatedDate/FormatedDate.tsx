@@ -1,8 +1,8 @@
-export const FormatedDate = (data) => {
+export const FormatedDate = (data:string) => {
     const date = new Date(data)
    const thisDay = date.toDateString().slice(0, 3)
    const thisMonth = date.toDateString().slice(4,7)
-   const daysWeek = {
+   const daysWeek: Record<string,string>  = {
      "Mon": "Понедельник",
      "Tue": "Вторник", 
      "Wed": "Среда", 
@@ -11,7 +11,7 @@ export const FormatedDate = (data) => {
      "Sat": "Суббота", 
      "Sun": "Воскресенье"
    }
-   const months = {
+   const months: Record<string,string> = {
      "Jan": "января",
      "Feb": "февраля",
      "Mar": "марта",

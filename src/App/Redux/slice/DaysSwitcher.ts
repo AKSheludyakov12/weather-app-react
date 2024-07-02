@@ -14,10 +14,10 @@ export const daysSwitcherSlice = createSlice ({
 name: "daysSwitcherSlice",
 initialState,
 reducers:{
-    setDaysSwitcherNext: (state, action: PayloadAction<number>) => {
+    setDaysSwitcherNext: (state) => {
        state.day =  state.day + 1
     },
-    setDaysSwitcherPrev: (state, action: PayloadAction<number>) =>{
+    setDaysSwitcherPrev: (state) =>{
         state.day =  state.day - 1
     }
 }

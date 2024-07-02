@@ -8,9 +8,9 @@ import { FormatedDate } from "../../../shared/lib";
 import { WeatherDataProps } from "../../../App/Redux/Config/StateSchema";
 import { useSelector } from "react-redux";
 import { getIsLoading, getSelectedDay } from "../../../App/Redux";
-import { MainWrapper } from "./MainWrapper/MainWrapper";
 import Ul from "../../../shared/ui/Ul";
 import { Loader } from "../../../shared/ui/Loader";
+import { MainWrapper } from "./MainWrapper/MainWrapper";
 
 
 interface CurrentForecastProps {

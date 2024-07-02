@@ -1,7 +1,9 @@
 import { WeatherDataSchema } from "../../App/Redux";
 import { WeatherDataProps } from "../../App/Redux/Config/StateSchema";
 
-export const WeatherDataDefault :WeatherDataProps = JSON.parse(localStorage.getItem("weatherData")) || {
+const storedWeatherData = localStorage.getItem("weatherData");
+
+export const WeatherDataDefault :WeatherDataProps = storedWeatherData ? JSON.parse(storedWeatherData) : {
         "location": {
           "name": '',
             "localtime": '2024-03-27 19:44'

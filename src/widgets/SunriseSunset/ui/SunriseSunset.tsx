@@ -1,9 +1,10 @@
 import React from 'react'
 
 import  "./SunriseSunset.scss"
+import { WeatherDataSchema } from '../../../App/Redux'
    
 
- const SunriseSunset = ({weatherData}) => {
+ const SunriseSunset = ({weatherData}:WeatherDataSchema) => {
   
     const {localtime} = weatherData.location
 

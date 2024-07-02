@@ -1,7 +1,11 @@
+import { ReactNode } from "react"
 import cls from "./Title.module.scss"
 
-const Title = ({children}) => { 
-
+interface TitleProps {
+    children?: ReactNode
+}
+const Title = (props:TitleProps) => { 
+const {children} = props
     
     return (
     <h1 className={cls.title}>

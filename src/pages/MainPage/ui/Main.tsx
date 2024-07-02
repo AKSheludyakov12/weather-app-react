@@ -13,14 +13,12 @@ import axios from "axios";
 import { getLocation } from "../../../shared/lib/GetCity/getCity";
 import { Input } from "../../../shared/ui/Input";
 import { HourlyForecast } from "../../../widgets/HourlyForecast";
-import { Button, ButtonTheme } from "../../../shared/ui/Button/ui/Button";
 import { WEATHERDATA_CITY_LOCALSTORAGE } from "../../../shared/const/LocalStorage";
 
 
 const MainPage = () => {
   const {weatherData} = useSelector((state:StateSchema)=>state.weatherData)
   const [type, setType] = useState("text")
-  const inputRef = useRef(null)
 const dispatch = useDispatch()
 const [city, setCity] = useState('')
 const [value, setValue] = useState('')
@@ -85,7 +83,7 @@ const onClearInput = () => {
   submitButton={submitButton}
 />
         
-        <CurrentForecast weatherData={weatherData} city={weatherData.location.name} activeTheme={activeTheme}  />
+ <CurrentForecast weatherData={weatherData} city={weatherData.location.name} activeTheme={activeTheme}  />
 <SunriseSunset  weatherData={weatherData} />
 <AirQuality weatherData={weatherData}/>
 <HourlyForecast weatherData={weatherData}  />

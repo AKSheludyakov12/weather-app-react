@@ -7,7 +7,6 @@ import { WeatherDataProps } from "../../../App/Redux/Config/StateSchema";
 import cls from "./HourlyForecast.module.scss"
 
 
-
 const formattedTime = (time: string ) => {
   return new Date(time);
 }

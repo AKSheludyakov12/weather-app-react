@@ -13,7 +13,7 @@ export const MainWrapper =( props:mainWrapperProps )=> {
     
     const {
         className,
-        theme,
+        theme = ThemeTimeOfDay.LIGHT_THEME,
         children
     } = props
     

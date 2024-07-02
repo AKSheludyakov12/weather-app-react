@@ -16,7 +16,7 @@ export const AirQuality = ({weatherData}:AirQualityProps ) => {
       return  Object.values(airProps).reduce((acc:number, airProps)=> ((acc + airProps)), 0)/Object.values(airProps).length
     }
 
-    const visibleAirState = (calculatedAirQuality) => {
+    const visibleAirState = (calculatedAirQuality:number) => {
         if(calculatedAirQuality <= 50){
             return "Хорошее"
         } else if (calculatedAirQuality <=100){

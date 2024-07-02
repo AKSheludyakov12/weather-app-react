@@ -1,5 +1,5 @@
 
-       export const weatherConditionDay = {
+       export const weatherConditionDay: Record<string,string> = {
           
           "Солнечно": "day.svg",
           "Ясно": "cloudy-day-1.svg",        

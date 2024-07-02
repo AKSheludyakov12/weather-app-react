@@ -70,7 +70,7 @@ type forecastday = {
 
 export interface WeatherDataSchema{
     weatherData:WeatherDataProps
-    isLoading: boolean
+    isLoading?: boolean
     error?: string
 } 
 

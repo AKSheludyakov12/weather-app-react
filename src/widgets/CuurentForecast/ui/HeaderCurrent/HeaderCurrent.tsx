@@ -5,8 +5,6 @@ import left from "./left.svg"
 import cls from "./HeaderCurrent.module.scss"
 import { useDispatch } from "react-redux"
 import { daysSwitcherAction } from "../../../../App/Redux/slice/DaysSwitcher"
-import { useSelector } from "react-redux"
-import { StateSchema } from "../../../../App/Redux/Config/StateSchema"
 import ClassNames from "../../../../shared/lib/ClassNames"
 interface HeaderCurrentProps {
     className?: string
