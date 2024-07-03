@@ -1,1 +1,0 @@
-export {FormatedDate} from "./FormatedDate/FormatedDate"
