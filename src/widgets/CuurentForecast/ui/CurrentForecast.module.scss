@@ -1,0 +1,66 @@
+
+
+.loader_pozition{
+    display: flex;
+    margin: 200px auto;
+
+}
+.block{ 
+    color: var(--primary-color);
+
+    display: grid;
+    place-items: center;
+    font: var(--font-xl);
+    
+  
+    .max_min{
+        display: grid;
+        place-items: center;
+        gap: 5px;
+        display: flex;
+        font:var(--font-l);
+        .min{
+            color: var(--secondary-color);
+        }
+    }
+     
+}
+.weather_property{
+    padding-top: 162px;
+    .list {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+    
+        li {
+            opacity: .85;
+            color: var(--accent-color);
+            display: inline-flex;
+            width: 147px;
+            height: 60px;
+            background-color:var(--bg-color);
+         border-radius: 6px;
+
+         .icon{
+            margin-left:16px ;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+         }
+         .text{
+            font-weight: 400;
+            display: flex;
+  flex-direction: column;
+  justify-content: center;  
+  .value{
+    font: var(--font-l)
+}
+         }
+        }
+    }
+
+}
+.desc{ 
+    font: var(--font-m);
+    color: var(--secondary-color)
+}
