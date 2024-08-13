@@ -2,7 +2,6 @@
 
 import { FC, useState } from "react";
 import cls from "./CurrentForecast.module.scss"
-import { ThemeTimeOfDay } from "../../../shared/lib/Theme/Theme";
 import { HeaderCurrent } from "./HeaderCurrent/HeaderCurrent";
 import { FormatedDate } from "../../../shared/lib";
 import { WeatherDataProps } from "../../../App/Redux/Config/StateSchema";
@@ -11,22 +10,24 @@ import { getIsLoading, getSelectedDay } from "../../../App/Redux";
 import Ul from "../../../shared/ui/Ul";
 import { Loader } from "../../../shared/ui/Loader";
 import { MainWrapper } from "./MainWrapper/MainWrapper";
+import { Theme } from "../../../App/Provider/ThemeProvider/lib/ThemeContext";
 
 
 interface CurrentForecastProps {
 weatherData: WeatherDataProps,
 city:string, 
-activeTheme:ThemeTimeOfDay
+lastUpdate?: string
 }
 
-const CurrentForecast:FC<CurrentForecastProps> = ({weatherData, city, activeTheme}) => {
+const CurrentForecast:FC<CurrentForecastProps> = ({weatherData, city,  lastUpdate}) => {
 
     const isLoading = useSelector(getIsLoading)
     const { current } = weatherData
     const selectedDay = useSelector(getSelectedDay)
     const {day} =  weatherData.forecast.forecastday[selectedDay]
   
-    const wind = selectedDay > 0 ? day.maxwind_kph : current.wind_kph
+    const windKph = selectedDay > 0 ? day.maxwind_kph : current.wind_kph
+    const windKms  = windKph * 1000 / 3600
     const humidity = selectedDay > 0 ? day.avghumidity :current.humidity 
     const chanceOfRain = day.daily_chance_of_rain
   
@@ -40,7 +41,7 @@ const CurrentForecast:FC<CurrentForecastProps> = ({weatherData, city, activeThem
     }
 
       return (
-<MainWrapper theme={activeTheme}>
+<MainWrapper >
 <HeaderCurrent 
         className={cls.header}
         selectedDay={selectedDay} 
@@ -59,6 +60,7 @@ const CurrentForecast:FC<CurrentForecastProps> = ({weatherData, city, activeThem
             </div>
           </div>
           <div className={cls.weather_property}>
+            <div className={cls.lastUpdate}>{`Последнее обновление: ${lastUpdate}`}</div>
             <Ul className={cls.list}>
               <li>
                 <div className={cls.icon}>
@@ -79,9 +81,10 @@ const CurrentForecast:FC<CurrentForecastProps> = ({weatherData, city, activeThem
                 </div>
                 <div className={cls.text}>
                 <div className={cls.desc}>Ветер</div>
-                <div className={cls.value}>{wind} Км/ч</div>
+                <div className={cls.value}>{windKms.toFixed(1)} м/с</div>
                 </div>
               </li>
+              <span className={cls.delimiter}></span>
               <li>
                 <div className={cls.icon}>
                   <img src="./img/rain.svg" alt="" />
@@ -125,6 +128,7 @@ const CurrentForecast:FC<CurrentForecastProps> = ({weatherData, city, activeThem
                 <div className={cls.value}>{humidity} %</div>
                 </div>
               </li>
+              <span className={cls.delimiter}></span>
               <li>
                 <div className={cls.icon}>
                   <svg
@@ -160,6 +164,7 @@ const CurrentForecast:FC<CurrentForecastProps> = ({weatherData, city, activeThem
                 <div className={cls.value}>{chanceOfRain} %</div>
                 </div>
               </li>
+
             </Ul>
           </div>
       </MainWrapper>

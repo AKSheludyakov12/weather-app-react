@@ -20,8 +20,8 @@ export default (env:EnvVariables) => {
     mode:env.mode ?? "development",
     entry: path.resolve(__dirname, 'src', 'index.tsx'),
     output: {
-        path: path.resolve(__dirname, 'build'),
-        filename: '[name].[contnent.hash].js',
+        path: path.resolve(__dirname, "build"),
+        filename: 'bundle.js',
     },
     plugins: 
     [

@@ -12,9 +12,10 @@ const formattedTime = (time: string ) => {
 }
 interface HourlyForecastProps {
   weatherData: WeatherDataProps,
+  className?:string
   }
 
-export const HourlyForecast = ({weatherData}: HourlyForecastProps) => {
+export const HourlyForecast = ({weatherData, className}: HourlyForecastProps) => {
 
 const localtime = weatherData.location.localtime
 const {hour} = weatherData.forecast.forecastday[0]
@@ -47,7 +48,6 @@ const {hour} = weatherData.forecast.forecastday[0]
 
   return (
     <div className={cls.hourly_forecast}>
-      <Title> Прогноз по часам</Title>
         <ul >
           {visibleHourForecast.map((mappedHour:{time:string, temp_c:number, condition:{text:string}})=>{
         const time = formattedTime(mappedHour.time)
@@ -56,16 +56,15 @@ const {hour} = weatherData.forecast.forecastday[0]
 
             {time.getHours() < 10 ? `0${time.getHours()}:00` : `${time.getHours()}:00`}
            </div>
-            <img src={`/icon/${weatherConditionDay[mappedHour.condition.text]}`}/>
-    
-            <Ptext> {mappedHour.condition.text}</Ptext>
+           <img src={`https://raw.githubusercontent.com/AKSheludyakov12/weather-app-react/6163e85b9823a72b1d83ab386346b9fc837438d4/public/icon/${weatherConditionDay[mappedHour.condition.text]}`} alt="Weather Icon" />
             <div className={cls.temp}>
-                { Math.round(mappedHour.temp_c)} °C
+                { Math.round(mappedHour.temp_c)}°
            </div>
            </li>
           })}
             
         </ul>
+
     </div>
   )
 }

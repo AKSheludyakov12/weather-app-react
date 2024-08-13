@@ -1,4 +1,7 @@
 .hourly_forecast{
+  max-width: 580px;
+  min-width: 100%;
+  margin: 0 auto;
   grid-column-start: 7;
   grid-row-start:7 ;
   align-items: center;
@@ -6,20 +9,24 @@
   backdrop-filter: blur(20px);
   background-color: var(--bg-color);
   border-radius: 10px;
-  width: 580px;
   height: 195px;
   color:var(--accent-color);
   transition: 300ms;
+  @media (max-width:780px) {
+    height: 150px;
+  }
 .temp{
   color: var(--primary-color);
   font:var(--font-l);
-  line-height: 20px;
+  @media (max-width:780px) {
+    font:var(--font-l);
+  }
 
 }
 
 
+
 &__icon{
-  
     display: grid;
     place-items: center;
 }
@@ -27,7 +34,6 @@
     padding-top: 25px;
     display: flex; 
     justify-content: center;  
-    gap:14px;
     
    img{
 
@@ -45,5 +51,8 @@
 
 .hourly_forecast:hover{
   scale: 1.070;
+  @media (max-width: 780px) {
+    scale: 1;        
+    }
 }
 

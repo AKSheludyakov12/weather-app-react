@@ -1,6 +1,7 @@
 import { HTMLInputTypeAttribute, InputHTMLAttributes } from "react"
 import cls from "./input.module.scss"
 import { Button, ButtonTheme } from "../../Button/ui/Button"
+import ClassNames from "../../../lib/ClassNames";
 
 interface InputProps extends InputHTMLAttributes<HTMLElement> {
     className?: string
@@ -23,7 +24,7 @@ export const Input = ({value, placeholder, className, type, onChange, isClearVis
 
 
     return (
-        <div className={cls.input}>
+        <div className={ClassNames( cls.input, {}, [className])}>
             <input className={cls.effect_1} type="text" placeholder={placeholder}
             onChange={onChange}
             value={value}

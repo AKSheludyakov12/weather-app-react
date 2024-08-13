@@ -1,11 +1,10 @@
 import { ReactNode } from "react"
-import { ThemeTimeOfDay } from "../../../../shared/lib/Theme/Theme"
 import ClassNames from "../../../../shared/lib/ClassNames"
 import cls from "./MainWrapper.module.scss"
+import { Theme } from "../../../../App/Provider/ThemeProvider/lib/ThemeContext"
 
 interface mainWrapperProps {
     className?: string,
-    theme?:ThemeTimeOfDay,
     children?: ReactNode
 }
 
@@ -13,12 +12,11 @@ export const MainWrapper =( props:mainWrapperProps )=> {
     
     const {
         className,
-        theme = ThemeTimeOfDay.LIGHT_THEME,
         children
     } = props
     
     return (
-        <div className={ClassNames(cls.MainWrapper, {}, [className, cls[theme]])}>
+        <div className={ClassNames(cls.MainWrapper, {}, [className])}>
             {children}
         </div>
 

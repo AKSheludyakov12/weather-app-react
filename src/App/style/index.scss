@@ -5,8 +5,9 @@
 @import "variables/global";
 
 
-.app-container{
-    height: 100%;
-    width: 100%;
-
+.container{
+   display: flex;
+   max-width: 1860px;
+   margin: 0 auto;                
+   overflow: scrolls;
 }

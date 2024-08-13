@@ -7,7 +7,6 @@
 }
 .block{ 
     color: var(--primary-color);
-
     display: grid;
     place-items: center;
     font: var(--font-xl);
@@ -26,41 +25,90 @@
      
 }
 .weather_property{
-    padding-top: 162px;
+    padding-top: 150px;
+    @media (max-width:780px) {
+    padding-top: 75px;
+        
+    }
     .list {
         display: flex;
-        gap: 8px;
+        row-gap: 8px;
         justify-content: center;
+        @media (max-width:780px) {
+            background-color:var(--bg-color);
+            border-radius: 12px;
+            height: 90px;
+            align-items: center;
+            justify-content: center;
+            
+        }
+
     
         li {
             opacity: .85;
-            color: var(--accent-color);
             display: inline-flex;
             width: 147px;
             height: 60px;
             background-color:var(--bg-color);
-         border-radius: 6px;
+             border-radius: 6px;
+             @media (max-width:780px) {
+            background-color:transparent;
+            display: grid;
+                 }
 
          .icon{
             margin-left:16px ;
             margin-right: 12px;
             display: flex;
             align-items: center;
+            @media (max-width:780px) {
+                margin: 0;
+                justify-content: center;
+            }
          }
-         .text{
-            font-weight: 400;
-            display: flex;
-  flex-direction: column;
-  justify-content: center;  
-  .value{
-    font: var(--font-l)
-}
-         }
+
         }
     }
 
 }
 .desc{ 
     font: var(--font-m);
-    color: var(--secondary-color)
+    color: var(--secondary-color);
+    @media (max-width:780px) {
+    font: var(--font-m);
+        
+    }
+}
+.text, .lastUpdate{
+    color: var(--accent-color);
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  
+.value{
+font: var(--font-l);
+@media (max-width:780px) {
+    font: var(--font-s);
+        
+    }
+}
+ }
+
+ .lastUpdate{
+    margin-bottom: 25px;
+ }
+
+.delimiter{
+    display: none;
+    margin-top: px;
+    transform: rotate(-90deg);
+    opacity: 0.6;
+    background-color: var(--accent-color);
+    width: 70px;
+    height: 2px;
+    border-radius: 2px;
+    @media (max-width:780px) {
+    display: block;
+        
+    }
 }

@@ -37,10 +37,13 @@ export const AirQuality = ({weatherData}:AirQualityProps ) => {
        <Title>
         Состояние воздуха на сегодня
        </Title >
+       <div className="airState">
        <div className={ClassNames("state-text", {}, [airQualityClass[airState]])}> 
             {airState}
         </div>
         <p className={ClassNames("value", {}, [airQualityClass[airState]])}>{Math.round(calculatedAirQuality(airQualityData))}</p>
+       
+       </div>
        <ul className="airQualityProps">
         {
         Object.entries(airQualityData)

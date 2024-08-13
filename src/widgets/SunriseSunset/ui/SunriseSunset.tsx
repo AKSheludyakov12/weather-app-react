@@ -7,13 +7,9 @@ import { WeatherDataSchema } from '../../../App/Redux'
  const SunriseSunset = ({weatherData}:WeatherDataSchema) => {
   
     const {localtime} = weatherData.location
-
     const formattedTime = (time: string) => {
     return new Date(time);
   }
-
-  
-
   const currentTime = formattedTime(localtime);
   
 if(weatherData)
@@ -28,9 +24,11 @@ i === currentTime.getHours() % 12 ? <span className='number active'> </span> : <
 ))
 }
         <div className='sunrise-sunset'>
+
+          <div className='nowTime'>{`${currentTime.getHours()}:${currentTime.getMinutes()}`}</div>
           <div className='sunRise'>{weatherData.forecast.forecastday[0].astro.sunrise}</div>
-<div className='sunset'>{weatherData.forecast.forecastday[0].astro.sunset}</div>
-<div className='line'></div>
+          <div className='sunset'>{weatherData.forecast.forecastday[0].astro.sunset}</div>
+          <div className='line'></div>
           </div>
          
 </div>

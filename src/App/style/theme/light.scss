@@ -1,7 +1,14 @@
 .app_light_theme{
+    height: 100vh;  
     --bg-color: #2f87debe;
     --bg-button-color: #2f87debe;
+    --secondary-color: #b8dcff;
     --bg-img: url(../../../public/img/day.jpg);
-    height: 100%;
-    width: 100%;
- }
+    background-color: var(--bg-color);
+
+    @media (max-width:780px) {
+        --bg-img: none ;
+    height: 100%;  
+
+    }
+}

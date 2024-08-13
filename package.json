@@ -2,8 +2,12 @@
   "name": "weather-app-react",
   "version": "1.0.0",
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "public":true,
+  "homepage": "https://aksheludyakov12.github.io/weather-app-react/",
   "main": "index.js",
   "scripts": {
+    "predeploy": "npm run build:prod",
+    "deploy": "gh-pages -d build/",
     "start": "webpack serve",
     "build:dev": "webpack --env mode=development",
     "build:prod": "webpack --env mode=production"

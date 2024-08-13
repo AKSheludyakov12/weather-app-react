@@ -4,7 +4,6 @@ import CurrentForecast from "../../../widgets/CuurentForecast";
 import SunriseSunset from "../../../widgets/SunriseSunset/ui/SunriseSunset";
 import AirQuality from "../../../widgets/AirQuality";
 import ClassNames from "../../../shared/lib/ClassNames";
-import { selectTheme } from "../../../shared/lib/Theme/Theme";
 import { useSelector } from "react-redux";
 import { StateSchema } from "../../../App/Redux/Config/StateSchema";
 import { useDispatch } from "react-redux";
@@ -14,6 +13,8 @@ import { getLocation } from "../../../shared/lib/GetCity/getCity";
 import { Input } from "../../../shared/ui/Input";
 import { HourlyForecast } from "../../../widgets/HourlyForecast";
 import { WEATHERDATA_CITY_LOCALSTORAGE } from "../../../shared/const/LocalStorage";
+import { FormatedTime } from "../../../shared/lib/FormattedTime/FormattedTime";
+import { Theme } from "../../../App/Provider/ThemeProvider/lib/ThemeContext";
 
 
 const MainPage = () => {
@@ -23,6 +24,7 @@ const dispatch = useDispatch()
 const [city, setCity] = useState('')
 const [value, setValue] = useState('')
 const [isClearVisible, setIsClearVisible] = useState(false)
+const [lastUpdate, setLastUpdate] = useState("")
 
 useEffect(()=>{
   const fetchcity =  async () =>{    
@@ -31,10 +33,12 @@ useEffect(()=>{
     const apiKey = 'd844dd4a-15d4-41dc-ad9a-b3f3523af9d1';
     const {data} = await axios.get(
         `https://catalog.api.2gis.com/3.0/items/geocode?lon=${longitude}&lat=${latitude}&type=adm_div.city&key=${apiKey}`)
-       try{
-         //@ts-ignore
-         dispatch(fetchWeatherData(data.result.items[0].full_name))
+        try{
+          //@ts-ignore
+          dispatch(fetchWeatherData(data.result.items[0].full_name))
+          setLastUpdate(FormatedTime(weatherData.location.localtime))
          localStorage.setItem(WEATHERDATA_CITY_LOCALSTORAGE,(data.result.items[0].full_name))
+        
          return data
         
       }catch{
@@ -44,8 +48,10 @@ useEffect(()=>{
       }
     }  
     fetchcity()
-},[dispatch])
+},[dispatch, lastUpdate])
 
+
+console.log(lastUpdate)
 
 const onchangeHandler = ( event: React.ChangeEvent<HTMLInputElement>) =>{
   setCity(event.target.value)
@@ -67,13 +73,13 @@ const onClearInput = () => {
   setCity('')
   setIsClearVisible(false)
 }
-  const activeTheme = selectTheme(weatherData.location.localtime)
+  console.log(weatherData.location.name)
   return (
 <>
- <div className={cls[activeTheme]}> </div>  
-  <div className={ClassNames(activeTheme, {}, [cls.content])}>
+  <div className={ClassNames(" ", {}, [cls.content])}>
  <div className={cls.MainPage}>
  <Input 
+ className={cls.input}
   placeholder={`Ваш город: ${weatherData.location.name}`}
   onChange={onchangeHandler}
   isClearVisible={isClearVisible}
@@ -83,10 +89,10 @@ const onClearInput = () => {
   submitButton={submitButton}
 />
         
- <CurrentForecast weatherData={weatherData} city={weatherData.location.name} activeTheme={activeTheme}  />
-<SunriseSunset  weatherData={weatherData} />
+ <CurrentForecast weatherData={weatherData} city={weatherData.location.name}  lastUpdate={lastUpdate}  />
+<HourlyForecast weatherData={weatherData}  /> 
 <AirQuality weatherData={weatherData}/>
-<HourlyForecast weatherData={weatherData}  />
+<SunriseSunset  weatherData={weatherData} />
 
 </div>
 

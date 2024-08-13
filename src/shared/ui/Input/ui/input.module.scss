@@ -6,7 +6,6 @@
 
 .input{
     display: flex;
-    float: left; 
      position: relative;
     color: var(--accent-color);
     background-color: transparent;
@@ -16,6 +15,7 @@
     font-size: 14px;
     height: 35px;
     padding: 0; 
+    max-width: 100%;
 }
     input[type="text"]{
     color: var(--accent-color);
@@ -59,3 +59,37 @@
     top: -35%;
     left: 96%;
 }
+@media (max-width: 768px) {  
+    .input {  
+        font-size: 12px; /* Уменьшаем размер шрифта */  
+    }  
+
+    .clear_button {
+            left: 85%; /* Смещаем кнопки */  
+    }
+
+    .submit_button {  
+        left: 90%; /* Смещаем кнопки */  
+    }  
+    .clear_icon, .submit_icon {  
+        width: 28px; /* Уменьшаем размеры иконок */  
+    }  
+}  
+
+@media (max-width: 480px) {  
+    .input {  
+        font-size: 10px; /* Еще больше уменьшаем размер шрифта */  
+        height: 30px; /* Уменьшаем высоту */  
+    }  
+
+    .clear_button {
+        left: 85%; /* Смещаем кнопки */  
+}
+
+.submit_button {  
+    left: 90%; /* Смещаем кнопки */  
+}  
+    .clear_icon, .submit_icon {  
+        width: 24px; /* Уменьшаем размеры иконок */  
+    }  
+}  

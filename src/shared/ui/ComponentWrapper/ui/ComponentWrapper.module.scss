@@ -4,5 +4,8 @@ width: 277px;
 height: 244px;
 border-radius:10% ;
 overflow: hidden;
-background-color: var(--bg-color)
+background-color: var(--bg-color);
+@media (max-width: 780px) {
+    width: 300px;
+}
 }

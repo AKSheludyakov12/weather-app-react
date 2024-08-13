@@ -1,8 +1,13 @@
 .app_dark_theme{
+    height: 100vh;
     --bg-color: #6c67d0;
     --bg-button-color: #5b57a9;
-    height: 100%;
-    width: 100%;
     --bg-img: url(../../../public/img/night.png);
+    background-color: #6c67d0c1;
+    --secondary-color: #C2BFF4;
+    @media (max-width:780px) {
+        --bg-img: none;
+        height: 100%;  
+    }
   
  }

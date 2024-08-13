@@ -1,10 +1,10 @@
 .non_visible{
-    display: none;
+opacity: 0;
+cursor: default;
 }
 .button{
-    cursor: pointer;
-    width: 50px;
-    height: 50px;
+width: 50px;
+height: 50px;
 border: none;
 outline: none;
 background-color: var(--bg-button-color);
@@ -14,6 +14,7 @@ border-radius: 100%;
 }
 
 .default{
+cursor: pointer;
 display: flex;
 justify-content: center;
 align-items: center;

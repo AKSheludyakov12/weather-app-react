@@ -2,19 +2,30 @@
     grid-column-start: 10;
     grid-row-start: 3;
     transition: 300ms;
+    @media (max-width:780px) {
+        padding-top: 50px;
+        display: flex;
+        justify-content: center;
+    
+    }
 }
 .AirQuality:hover {
     scale: 1.070;
+    @media (max-width:780px) {
+    scale: 1;        
+    }
+}
+
+.airState{
+    display: grid;
+    place-items: center;
 }
 .state-text{
-    display: flex;
-    justify-content: center;
     font: var(--font-l);
-    padding-top: 32px;
+    padding-top: 28px;
 }
 .value{
     padding-top:10px ;
-    display: flex;
     justify-content: center;
     color: var(--accent-color);
     font: var(--font-l);
